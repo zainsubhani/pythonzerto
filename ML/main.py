@@ -19,5 +19,26 @@ csv_files = [f for f in os.listdir(path) if f.endswith(".csv")]
 
 # Load the first CSV file (or loop over all)
 df = pd.read_csv(os.path.join(path, csv_files[0]))
+#print(df.describe)
+df1=pd.DataFrame(df,columns=['Name','Wage','Value'])
+def parse_currency(value):
+    if isinstance(value, str):
+        value = value.replace('€', '').strip()
+        if value.endswith('M'):
+            return float(value[:-1]) * 1_000_000
+        elif value.endswith('K'):
+            return float(value[:-1]) * 1_000
+        else:
+            try:
+                return float(value)
+            except:
+                return None
+    return None
 
-print(df.head())
+
+df1['Value'] = df1['Value'].apply(parse_currency)
+df1['Wage'] = df1['Wage'].apply(parse_currency)
+df1['Difference'] = df1['Value'] - df1['Wage']
+
+
+print(df1.head())
