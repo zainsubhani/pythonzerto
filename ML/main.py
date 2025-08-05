@@ -8,6 +8,9 @@
 import kagglehub
 import pandas as pd
 import os
+import seaborn as sns;
+import matplotlib.pyplot as plt
+
 
 # Download the dataset
 path = kagglehub.dataset_download("bryanb/fifa-player-stats-database")
@@ -39,6 +42,11 @@ def parse_currency(value):
 df1['Value'] = df1['Value'].apply(parse_currency)
 df1['Wage'] = df1['Wage'].apply(parse_currency)
 df1['Difference'] = df1['Value'] - df1['Wage']
+sns.scatterplot(data=df1, x='Wage', y='Value')
+plt.title('Wage distribution by Value category')
+plt.show()
 
 
-print(df1.head())
+# print(df1.head())
+
+

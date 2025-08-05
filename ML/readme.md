@@ -16,6 +16,6 @@ https://research.facebook.com/blog/2018/05/the-facebook-field-guide-to-machine-l
 numpy = multi deminsion array
 pandas to use for data analysis
 scikit learn
-matplotlib
+matplotlib to visualize the data
 jupyter notebook is very useful for visualization
 kaggle is community
