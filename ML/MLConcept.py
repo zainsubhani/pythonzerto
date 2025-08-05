@@ -8,6 +8,9 @@ from sklearn.datasets import load_iris;
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn import metrics
+from joblib import dump, load
+
+
 iris = load_iris()
 X=iris.data
 Y=iris.target
@@ -32,3 +35,5 @@ sample = [[4,4,5,6],[4,4,5,6]]
 prediction = knn.predict(sample)
 pred_speics= [iris.target_names[p] for p in prediction]
 print(pred_speics)
+
+
