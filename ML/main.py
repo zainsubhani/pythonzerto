@@ -10,12 +10,15 @@ import pandas as pd
 import os
 import seaborn as sns;
 import matplotlib.pyplot as plt
+from bokeh.plotting import figure, show
+from bokeh.models import HoverTool
 
 
 # Download the dataset
 path = kagglehub.dataset_download("bryanb/fifa-player-stats-database")
-
+hover = HoverTool()
 print("Path to dataset files:", path)
+TOOLTIPS = [('index','$index'),("(Wage,Value)","($Wage,$Value)"),("Name","@Name")]
 
 # Find CSV files in the downloaded path
 csv_files = [f for f in os.listdir(path) if f.endswith(".csv")]
@@ -44,7 +47,10 @@ df1['Wage'] = df1['Wage'].apply(parse_currency)
 df1['Difference'] = df1['Value'] - df1['Wage']
 sns.scatterplot(data=df1, x='Wage', y='Value')
 plt.title('Wage distribution by Value category')
-plt.show()
+# plt.show()
+p = figure(title="Soccer", x_axis_label="Wage", y_axis_label="Value" )
+p.circle('Wage','Value',size=10,source=df1 )
+show(p)
 
 
 # print(df1.head())

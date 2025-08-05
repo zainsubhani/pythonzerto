@@ -19,3 +19,4 @@ scikit learn
 matplotlib to visualize the data
 jupyter notebook is very useful for visualization
 kaggle is community
+bokeh = intertactive visualization
